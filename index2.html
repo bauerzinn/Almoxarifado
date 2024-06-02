@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>Cadastro de Produto</title>
+        <style>
+            body {
+                background: linear-gradient(135deg, #476bb5, #1f304f);
+                font-family: Poppins;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                background-color: #ffffff;
+                border-radius: 10px;
+                border: 2px solid #3E445B;
+                width: 80%;
+                max-width: 450px;
+                box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336);
+                padding: 20px;
+            }
+            h1 {
+                text-align: center;
+                color: #000000;
+                margin-bottom: 20px;
+            }
+            form {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 5px;
+            }
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+            }
+            input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+            a {
+                color: #154a82;
+                text-decoration: none;
+                margin-right: 20px;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Cadastro de Produto</h1>
+            <form action="/cadastro" method="post">
+                Nome: <input type="text" name="nome"><br>
+                Categoria: <input type="text" name="categoria"><br>
+                Preço: <input type="text" name="preco"><br>
+                Quantidade: <input type="text" name="quantidade"><br>
+                Data: <input type="text" name="data"><br>
+                <input type="submit" value="Cadastrar">
+            </form>
+            <a href="/">Voltar</a>
+        </div>
+    </body>
+</html>
