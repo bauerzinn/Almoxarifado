@@ -45,141 +45,14 @@ class ProdutoView:
     @staticmethod
     # render_pagina_inicial: Retorna o HTML da página inicial.
     def render_pagina_inicial():
-        return b'''
-            <html>
-            <head>
-            <title>Almoxarifado</title>
-            <style>
-                body {
-                background: linear-gradient(135deg, #476bb5, #1f304f);
-                display: flex;
-                font-family: Poppins;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-
-                border: 0;
-                }
-
-                h1 {
-                    text-align: center;
-                    color: #000000;
-                }
-                a {
-                    margin-top: 3px;
-                    color: #2886eb;
-                    text-decoration: none;
-                }
-                a:hover {
-                    text-decoration: underline;
-                }
-                .container {
-                background-color: #ffffff;
-                border-radius: 10px;
-                border: 2px solid #3E445B;
-                width: 450px;
-                max-width: 100%;
-                box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336);
-                padding: 0px 0px 20px;
-
-                display: flex;
-                flex-direction: column; /* Para garantir que os links fiquem empilhados verticalmente */
-                align-items: center; /* Centralizar os links verticalmente */
-                }
-            </style>
-            </head>
-            <body>
-            <div class="container">
-            <h1>Almoxarifado</h1>
-            <a href="/cadastro">Cadastrar Novo Produto</a><br>
-            <a href="/lista">Lista de Produtos</a>
-            </div>
-            </body>
-            </html>
-        '''
+        with open('Home.html', 'rb') as file:
+            return file.read()
+        
     @staticmethod
     # HTML do formulário de cadastro de produto.
     def render_formulario_cadastro():
-        return '''
-            <html>
-            <head>
-            <title>Cadastro de Produto</title>
-            <style>
-            body {
-                background: linear-gradient(135deg, #476bb5, #1f304f);
-                font-family: Poppins;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-                margin: 0;
-                padding: 0;
-            }
-            .container {
-                background-color: #ffffff;
-                border-radius: 10px;
-                border: 2px solid #3E445B;
-                width: 80%;
-                max-width: 450px;
-                box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.336);
-                padding: 20px;
-            }
-            h1 {
-                text-align: center;
-                color: #000000;
-                margin-bottom: 20px;
-            }
-            form {
-                background-color: #ffffff;
-                padding: 20px;
-                border-radius: 5px;
-            }
-            input[type="text"] {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
-            input[type="submit"] {
-                width: 100%;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                background-color: #007bff;
-                color: #fff;
-                cursor: pointer;
-            }
-            input[type="submit"]:hover {
-                background-color: #0056b3;
-            }
-            a {
-                color: #154a82;
-                text-decoration: none;
-                margin-right: 20px;
-            }
-            a:hover {
-                text-decoration: underline;
-            }
-            </style>
-            </head>
-            <body>
-            <div class="container">
-            <h1>Cadastro de Produto</h1>
-            <form action="/cadastro" method="post">
-                Nome: <input type="text" name="nome"><br>
-                Categoria: <input type="text" name="categoria"><br>
-                Valor: <input type="text" name="preco"><br>
-                Quantidade: <input type="text" name="quantidade"><br>
-                Data: <input type="text" name="data"><br>
-                <input type="submit" value="Cadastrar">
-            </form>
-            <a href="/">Voltar</a>
-            </div>
-            </body>
-            </html>
-
-        '''.encode('utf-8')
+        with open('Cadprod.html', 'rb') as file:
+            return file.read()
 
     @staticmethod
     # Gera a lista de produtos em HTML.
@@ -228,6 +101,16 @@ class ProdutoView:
             .produto span {
                 font-weight: bold;
             }
+
+            a {
+                color: #154a82;
+                text-decoration: none;
+                margin-right: 20px;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            
         </style>
     </head>
 
@@ -238,7 +121,8 @@ class ProdutoView:
 '''
         for produto in produtos:
             response += f'<li>{produto["nome"]} - {produto["categoria"]} - R$ {produto["preco"]} - Quantidade: {produto["quantidade"]} - Data: {produto["data"]}</li>'
-        response += '</ul><a href="/">Voltar</a></div></body></html>'
+        response += '''
+        </ul><a href="/">Voltar</a></div></body></html>'''
         return response.encode('utf-8')
 
 
