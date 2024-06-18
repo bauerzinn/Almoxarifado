@@ -1,18 +1,31 @@
 import os
-class ProdutoView:
-    @staticmethod
-    def renderpaginainicial():
-        caminho_arquivo = os.path.join(os.path.dirname(__file__), 'Home.html')
+
+# Classe base que utiliza encapsulamento para proteger métodos e atributos
+class BaseView:
+    def __init__(self):
+        self._base_path = os.path.dirname(__file__)  # Atributo protegido
+
+    def _render_file(self, filename):  # Método protegido
+        """Renderiza o conteúdo de um arquivo HTML."""
+        caminho_arquivo = os.path.join(self._base_path, filename)
         with open(caminho_arquivo, 'rb') as file:
             return file.read()
+
+# Classe que herda de BaseView
+class ProdutoView(BaseView):
+    @staticmethod
+    def renderpaginainicial():
+        """Renderiza a página inicial."""
+        return ProdutoView()._render_file('Home.html')
         
     @staticmethod
     def renderformulariocadastro():
-        caminho_arquivo = os.path.join(os.path.dirname(__file__), 'Cadprod.html')
-        with open(caminho_arquivo, 'rb') as file:
-            return file.read()
+        """Renderiza o formulário de cadastro."""
+        return ProdutoView()._render_file('Cadprod.html')
+
     @staticmethod
     def render_lista_produtos(produtos):
+        """Renderiza uma lista de produtos em formato HTML."""
         response = '''<html>
 <head>
     <title>Lista de Produtos</title>
