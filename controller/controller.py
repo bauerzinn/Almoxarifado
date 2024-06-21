@@ -3,13 +3,15 @@ import urllib.parse as urlparse
 from model.model import ProdutoModel
 from view.view import ProdutoView
 
+#Cada vez que o servidor HTTP recebe uma nova requisição, ele cria uma nova instância da classe ProdutoController
 class ProdutoController(BaseHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
-        self.model = ProdutoModel()
-        self.view = ProdutoView()
+        self.model = ProdutoModel()  #produto controller usa instancias de ProdutoModel e ProdutoView
+        self.view = ProdutoView()  # assim eu posso usar métodos dessas classes
         super().__init__(*args, **kwargs)
 
     def do_GET(self):
+        #com base nas rotas do path, dispara as funções de renderização das paginass
         if self.path == '/':
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
@@ -25,6 +27,7 @@ class ProdutoController(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/html')
             self.end_headers()
             produtos = self.model.obter_produtos()
+            #wfile é o canal de saída onde os dados da resposta são escritos.
             self.wfile.write(self.view.render_lista_produtos(produtos))
 
     def do_POST(self):

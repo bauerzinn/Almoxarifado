@@ -33,21 +33,42 @@ class ProdutoView(BaseView):
         body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #476bb5, #1f304f); margin: 0; padding: 0; }
         .container { width: 80%; margin: 0 auto; padding-top: 50px; }
         h1 { text-align: center; color: #000000; }
-        ul { list-style-type: none; padding: 0; }
-        .produto { background-color: #ffffff; padding: 20px; margin-bottom: 10px; border-radius: 5px; }
-        .produto li { margin-bottom: 5px; }
-        .produto span { font-weight: bold; }
-        a { color: #154a82; text-decoration: none; margin-right: 20px; }
+        table { width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 5px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #154a82; color: white; }
+        tr:hover { background-color: #f1f1f1; }
+        a { color: #ffffff;; text-decoration: none; margin-right: 20px; }
         a:hover { text-decoration: underline; }
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Lista de Produtos</h1>
-        <ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+        </ul><a href="/">Voltar</a></div></body></html>
+
 '''
+
         for produto in produtos:
-            response += f'<li>{produto["nome"]} - {produto["categoria"]} - R$ {produto["preco"]} - Quantidade: {produto["quantidade"]} - Data: {produto["data"]}</li>'
-        response += '''
-        </ul><a href="/">Voltar</a></div></body></html>'''
+            response += f'''
+                <tr>
+                    <td>{produto["nome"]}</td>
+                    <td>{produto["categoria"]}</td>
+                    <td>R$ {produto["preco"]}</td>
+                    <td>{produto["quantidade"]}</td>
+                    <td>{produto["data"]}</td>
+                </tr>
+            </tbody>
+            '''
         return response.encode('utf-8')
